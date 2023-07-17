@@ -7,6 +7,7 @@ import 'package:storapp/splash.dart';
 void main() {
   runApp(lay());
 }
+// shop app
 class lay extends StatefulWidget {
   const lay({Key? key}) : super(key: key);
 
