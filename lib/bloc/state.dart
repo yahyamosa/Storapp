@@ -7,3 +7,6 @@ class fail extends state{}
 
 class livesecss extends state{}
 class failsecss extends state{}
+
+
+class notsecss extends state{}

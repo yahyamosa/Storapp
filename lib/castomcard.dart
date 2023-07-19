@@ -29,6 +29,7 @@ class _mycState extends State<myc> {
         {
 
          List<product> listDat = BlocProvider.of<mycubit>(context).prodectdata;
+         List<product> not = BlocProvider.of<mycubit>(context).numbar;
          List lis = BlocProvider.of<mycubit>(context).data;
          var a = BlocProvider.of<mycubit>(context).a;
 
@@ -40,7 +41,16 @@ class _mycState extends State<myc> {
               title:Text(' new trend' , style: TextStyle(color: Colors.black),),
               centerTitle: true,
               actions: [
-                IconButton(onPressed:(){}, icon:Icon(Icons.shopping_cart, color: Colors.black,))
+              Stack(
+                children: [
+                  IconButton(onPressed:(){},icon:Icon(Icons.shopping_cart, color: Colors.black,size: 30,)),
+                  Positioned(
+                    left: 20,
+                    child: Text("${not.length == 0 ? '' : not.length}" , style: TextStyle(color: Colors.red),),
+                  )
+
+                ],
+              )
               ],
             ),
             body: state is loding ? Center(child: CircularProgressIndicator()) :GridView.builder(
@@ -73,8 +83,11 @@ class _mycState extends State<myc> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                Text("${listDat[index].id}", style: TextStyle(
-                                    fontSize: 18, color: Colors.grey),),
+                                Container(
+                                  width: 70,
+                                  child: Text( "${listDat[index].title}", overflow: TextOverflow.ellipsis ,style: TextStyle(
+                                      fontSize: 12, color: Colors.grey , ),),
+                                ),
 
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment
@@ -82,13 +95,18 @@ class _mycState extends State<myc> {
                                   children: [
                                     Text("${listDat[index].price}",
                                       style: TextStyle(fontSize: 18),),
-                                    IconButton(onPressed:(){
-                                      BlocProvider.of<mycubit>(context).ontap();
-                                     
-                                    },
-                                        icon: a == true ? Icon(Icons.favorite_border):Icon(
-                                          Icons.favorite,
-                                          color: Colors.red,))
+                                   Row(
+                                     children: [
+                                       IconButton(onPressed:(){
+                                         product c = product(id:listDat[index].id, title: listDat[index].title, price: listDat[index].price, description: listDat[index].description, image: listDat[index].image, rate: listDat[index].rate);
+                                         BlocProvider.of<mycubit>(context).ontap();
+                                         BlocProvider.of<mycubit>(context).shownot(c);
+
+                                       }, icon: a == true ? Icon(Icons.star , color: Colors.amber,):Icon(Icons.star_border, color: Colors.red,)),
+                                       Text("${listDat[index].rate.rate}"),
+                                     ],
+                                   )
+                                   //  Text("${listDat[index].rate.count}"),
                                   ],
                                 ),
 

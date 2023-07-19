@@ -13,9 +13,8 @@ class splash extends StatefulWidget {
 class _splashState extends State<splash> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    Timer(Duration(seconds: 3),()=> Navigator.push(context,MaterialPageRoute(builder:(context )=>myc())));
+    Timer(const  Duration(seconds: 3),()=> Navigator.push(context,MaterialPageRoute(builder:(context )=>myc())));
   }
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,14 +23,14 @@ class _splashState extends State<splash> {
           children: [
             Container(
               width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
+              decoration:const BoxDecoration(
+                  image:  DecorationImage(
                     image: AssetImage("imag/splashimag.png"),
                   )
 
               ),
             ),
-            Positioned(
+         const  Positioned(
                 top: 200,
                 left: 180,
                 child: Text('JUST DO IT ' , style: TextStyle(fontWeight: FontWeight.bold , fontSize: 30),)) ,

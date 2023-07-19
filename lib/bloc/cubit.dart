@@ -47,4 +47,14 @@ void ontap(){
     emit(livesecss());
 }
 
+
+  List<product> numbar = [];
+void shownot(product c ){
+numbar.add(c);
+emit(notsecss());
+}
+
+
+
+
 }
